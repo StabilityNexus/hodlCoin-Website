@@ -1,4 +1,4 @@
-hodlCoin is a financial game where you buy a token whose price has been mathematically proven to always go up!
+The price has been mathematically proven to always go up!
 
 * [Read the paper](https://eprint.iacr.org/2023/1029)
 * [Play the game](https://app.hodlcoin.co.in)
