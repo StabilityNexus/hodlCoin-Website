@@ -8,14 +8,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
  
 </head>
-<body class="bg-purple-50 text-purple-900 min-h-screen">
 
+
+<body class="bg-purple-50 text-purple-900 min-h-screen">
+  
   <!-- Header -->
   <header >
     <div class="container mx-auto px-4 py-6 flex justify-between items-center">
       <div class="flex">
         
-        <div class="text-2xl font-bold">hodlCoin</div>
+        <!-- <div class="text-2xl font-bold">hodlCoin</div> -->
       </div>
       <!-- <nav>
         <ul class="nav-links">
@@ -32,14 +34,12 @@
   <!-- Hero Section -->
   <section class="hero bg-gradient">
     <div class="container text-center">
-      <h1 class="hero-title">Welcome to hodlCoin</h1>
-      <p class="hero-subtitle"> hodlCoin is a staking protocol where players receive
-        fees from players who unstake early go are used to provide further backing for the liquid staking tokens,
-        thereby benefiting those who keep staking for longer. 
-        As a result, the price of liquid staking tokens never decreases.</p>
+      <h1 class="hero-title">hodlCoin</h1>
+      <p class="hero-subtitle"> A liquid staking protocol where the price of the liquid staking token always increases!</p>
+      <p class="hero-subtitle"> Fees paid by stakers who unstake early benefit stakers who keep staking longer.</p>
       <div class="hero-buttons">
-        <button class="btn btn-primary">Start Staking</button>
-        <button class="btn btn-outline">Learn More</button>
+        <button onclick="navigateToSite('https://eprint.iacr.org/2023/1029')" class="btn btn-primary">Read the Paper</button>
+        <button onclick="navigateToSite('https://www.youtube.com/watch?v=D7L7h7EOIow')" class="btn btn-outline">Watch a Video</button>
       </div>
     </div>
   </section>
@@ -47,14 +47,8 @@
   <!-- Features Section -->
   <section class="features">
     <div class="container">
-      <h2 class="section-title">Why Choose hodlCoin?</h2>
+      <h2 class="section-title">Start Staking Now</h2>
       <div class="feature-cards">
-        <div class="feature-card">
-            <i class="fa-solid fa-timeline"></i>
-            <a href="https://eprint.iacr.org/2023/1029" target="_blank">
-                <h3>Read the Paper</h3>
-                <p>Learn more about hodlCoin and its mechanics.</p></a>
-        </div>
         <div class="feature-card">
             <i class="fa-solid fa-gears"></i>
             <a href="https://app.hodlcoin.co.in/" target="_blank">
@@ -128,5 +122,14 @@
   </footer>
 
   <script src="scripts.js"></script>
+  <script>      
+    function navigateToSite(url) {
+      if (url) {
+        window.location.href = url;
+      } else {
+        console.error('No URL provided');
+      }
+    }
+  </script>
 </body>
 </html>
