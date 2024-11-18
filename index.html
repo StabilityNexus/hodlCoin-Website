@@ -125,7 +125,7 @@
   <script>      
     function navigateToSite(url) {
       if (url) {
-        window.location.href = url;
+        window.open(url, '_blank', 'noopener,noreferrer');
       } else {
         console.error('No URL provided');
       }
