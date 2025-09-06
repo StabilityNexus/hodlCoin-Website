@@ -1,0 +1,498 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 96%;
+    --foreground: 240 10% 3.9%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 8% 12%;
+    --foreground: 0 0% 95%;
+
+    --card: 240 6% 15%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 240 6% 15%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 270 100% 50%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4% 22%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 240 4% 22%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 240 4% 22%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 240 4% 25%;
+    --input: 240 4% 18%;
+    --ring: 270 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    /* Responsive font sizing: scales between 16px and 20px based on viewport width */
+    /* font-size: clamp(16px, 0.9vw + 0.5rem, 20px); */
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+    font-family: var(--font-poppins), 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-extrabold tracking-tight;
+    font-family: var(--font-poppins), 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  p {
+    @apply font-medium;
+    font-family: var(--font-poppins), 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* Ensure consistent font sizes across different screen sizes */
+  @media (min-width: 640px) {
+    h1 {
+      font-size: 2.25rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+    
+    h3 {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 2.25rem;
+    }
+    
+    h3 {
+      font-size: 2rem;
+    }
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    @apply bg-background/80 backdrop-blur-lg border border-border/50;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1;
+  }
+
+  .text-bold {
+    @apply font-extrabold tracking-tight;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500 dark:from-purple-400 dark:to-fuchsia-500;
+  }
+
+  /* 3D Effects */
+  .card-3d {
+    @apply transform-gpu transition-all duration-300 ease-out;
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+  }
+
+  .card-3d:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateZ(20px);
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.25),
+      0 10px 20px -5px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .card-3d {
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .dark .card-3d:hover {
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 10px 20px -5px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .button-3d {
+    @apply transform-gpu transition-all duration-200 ease-out;
+    transform: perspective(1000px) translateZ(0px);
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .button-3d:hover {
+    transform: perspective(1000px) translateZ(8px);
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .button-3d:active {
+    transform: perspective(1000px) translateZ(2px);
+    box-shadow: 
+      0 1px 2px 0 rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .button-3d {
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .button-3d:hover {
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.4),
+      0 4px 6px -2px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .text-3d {
+    text-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .text-3d {
+    text-shadow: 
+      0 1px 2px rgba(0, 0, 0, 0.5),
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      0 0 8px rgba(255, 255, 255, 0.1);
+  }
+
+  .text-3d-glow {
+    text-shadow: 
+      0 0 10px rgba(139, 92, 246, 0.5),
+      0 0 20px rgba(139, 92, 246, 0.3),
+      0 0 30px rgba(139, 92, 246, 0.1);
+  }
+
+  .input-3d {
+    @apply transform-gpu transition-all duration-200;
+    box-shadow: 
+      inset 0 2px 4px 0 rgba(0, 0, 0, 0.06),
+      0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .input-3d:focus {
+    box-shadow: 
+      inset 0 2px 4px 0 rgba(0, 0, 0, 0.06),
+      0 0 0 3px rgba(139, 92, 246, 0.1),
+      0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .input-3d {
+    box-shadow: 
+      inset 0 2px 4px 0 rgba(0, 0, 0, 0.3),
+      0 1px 2px 0 rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .dark .input-3d:focus {
+    box-shadow: 
+      inset 0 2px 4px 0 rgba(0, 0, 0, 0.3),
+      0 0 0 3px rgba(139, 92, 246, 0.2),
+      0 4px 6px -1px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .header-3d {
+    @apply transform-gpu;
+    background: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--background)) 50%, 
+      hsl(var(--muted)) 100%);
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .header-3d {
+    background: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--background)) 50%, 
+      hsl(var(--muted)) 100%);
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.3),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .floating-3d {
+    @apply transform-gpu;
+    animation: float-3d 6s ease-in-out infinite;
+  }
+
+  @keyframes float-3d {
+    0%, 100% { 
+      transform: perspective(1000px) translateZ(0px) rotateX(0deg) rotateY(0deg);
+    }
+    25% { 
+      transform: perspective(1000px) translateZ(10px) rotateX(2deg) rotateY(-1deg);
+    }
+    50% { 
+      transform: perspective(1000px) translateZ(5px) rotateX(-1deg) rotateY(2deg);
+    }
+    75% { 
+      transform: perspective(1000px) translateZ(15px) rotateX(1deg) rotateY(-2deg);
+    }
+  }
+
+  .page-3d {
+    @apply transform-gpu;
+    background: hsl(var(--background));
+  }
+
+  .dark .page-3d {
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+      hsl(var(--background));
+  }
+
+  /* Ensure font sizes are consistent */
+  .text-xs {
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+  }
+
+  .text-sm {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+
+  .text-base {
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+  }
+
+  .text-lg {
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  .text-xl {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+
+  .text-3xl {
+    font-size: 1.875rem !important;
+    line-height: 2.25rem !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/50 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary;
+}
+
+/* Custom animations */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-background/50 backdrop-blur-sm border-primary/20;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500 dark:from-purple-400 dark:to-fuchsia-500;
+}
+
+/* Button styles */
+.btn-gradient {
+  @apply bg-gradient-to-r from-primary to-purple-500 text-white hover:opacity-90 transition-opacity dark:from-purple-400 dark:to-fuchsia-500;
+}
+
+/* RainbowKit styling - Light mode defaults */
+:root {
+  /* Light mode RainbowKit colors */
+  --rk-colors-connectButtonBackground: rgba(255, 255, 255, 0.9);
+  --rk-colors-connectButtonBackgroundError: rgba(255, 255, 255, 0.9);
+  --rk-colors-connectButtonInnerBackground: rgba(255, 255, 255, 0.95);
+  --rk-colors-connectButtonText: rgb(30, 30, 30);
+  --rk-colors-connectButtonTextError: rgb(30, 30, 30);
+}
+
+/* Light mode button styling - using :not(.dark) to target light mode */
+:root:not(.dark) [data-rk] button[data-testid="rk-connect-button"] {
+  @apply bg-white/90 border-gray-200/80 hover:bg-white/95 backdrop-blur-sm;
+  color: rgb(30, 30, 30) !important;
+}
+
+:root:not(.dark) [data-rk] button[data-testid="rk-account-button"] {
+  @apply bg-white/90 border-gray-200/80 hover:bg-white/95 backdrop-blur-sm;
+}
+
+:root:not(.dark) [data-rk] button[data-testid="rk-account-button"] > div {
+  color: rgb(30, 30, 30) !important;
+}
+
+/* Dark mode RainbowKit overrides */
+.dark {
+  --rk-colors-connectButtonBackground: rgba(30, 30, 30, 0.9);
+  --rk-colors-connectButtonBackgroundError: rgba(30, 30, 30, 0.9);
+  --rk-colors-connectButtonInnerBackground: rgba(40, 40, 40, 0.95);
+  --rk-colors-connectButtonText: rgb(255, 255, 255);
+  --rk-colors-connectButtonTextError: rgb(255, 255, 255);
+}
+
+.dark [data-rk] button[data-testid="rk-connect-button"] {
+  @apply bg-gray-800/90 border-gray-700/80 hover:bg-gray-800/95 backdrop-blur-sm;
+  color: rgb(255, 255, 255) !important;
+}
+
+.dark [data-rk] button[data-testid="rk-account-button"] {
+  @apply bg-gray-800/90 border-gray-700/80 hover:bg-gray-800/95 backdrop-blur-sm;
+}
+
+/* Light mode specific styles */
+.light {
+  .glass {
+    @apply bg-white/80 backdrop-blur-sm border-gray-200;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500;
+  }
+  
+  .card-hover {
+    @apply hover:shadow-gray-200;
+  }
+  
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary to-purple-500;
+  }
+}

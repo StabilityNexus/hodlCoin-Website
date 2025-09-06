@@ -1,0 +1,53 @@
+import './globals.css'
+import type { Metadata, Viewport } from 'next'
+import { Poppins } from 'next/font/google'
+import { ThemeProvider } from '../providers/theme-provider'
+import { Header } from '../components/Header'
+import Footer from '../components/Footer'
+
+const poppins = Poppins({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins',
+  display: 'swap',
+  fallback: ['system-ui', 'arial', 'sans-serif']
+})
+
+export const metadata: Metadata = {
+  title: 'HodlCoin',
+  description: 'Stake your tokens and earn rewards',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning className={poppins.variable}>
+      {/* Fonts are now loaded exclusively through `next/font` */}
+      <body className={poppins.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+            <div className="relative flex min-h-screen flex-col overflow-x-hidden">
+              <Header />
+              <main className="flex-1 w-full">
+                {children}
+              </main>
+              <Footer />
+            </div>
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
