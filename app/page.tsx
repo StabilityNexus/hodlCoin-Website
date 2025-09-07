@@ -31,7 +31,7 @@ export default function HomePage() {
 
         <div className="relative flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 py-16 space-y-8">
           {/* Logo Animation */}
-          <div className="relative w-32 h-32 animate-float">
+          <div className="relative w-32 h-16 animate-float">
           </div>
 
           {/* Main Content */}
@@ -45,6 +45,12 @@ export default function HomePage() {
             </p>
           </div>
 
+          <div className="text-center space-y-6">
+            <h2 className="pb-2 text-3xl md:text-4xl tracking-tight text-gradient">
+              Choose the blockchain where you would like to stake:
+            </h2>
+          </div>
+
           {/* Action Buttons */}
           <div className="flex flex-col md:flex-row gap-4 animate-fade-in">
             <Link href='https://evm.hodlcoin.co.in/'>
@@ -55,7 +61,7 @@ export default function HomePage() {
                   transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary/25
                   border-0 text-primary-foreground"
               >
-                <span className="relative z-10">EVM Chain</span>
+                <span className="relative z-10">EVM Chains</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-lg blur opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
               </Button>
@@ -65,11 +71,11 @@ export default function HomePage() {
                 size="lg" 
                 variant="outline" 
                 className="w-full md:w-auto font-bold relative overflow-hidden group
-                  border-2 border-primary/50 hover:border-primary bg-background/50 backdrop-blur-sm
-                  hover:bg-primary/10 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-primary/20
-                  text-foreground hover:text-primary"
+                  bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary
+                  transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary/25
+                  border-0 text-primary-foreground"
               >
-                <span className="relative z-10">Ergo Chain</span>
+                <span className="relative z-10">Ergo</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-purple-500/30 rounded-lg blur opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
               </Button>
@@ -82,7 +88,7 @@ export default function HomePage() {
                   transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary/25
                   border-0 text-primary-foreground"
               >
-                <span className="relative z-10">Alephium Chain</span>
+                <span className="relative z-10">Alephium</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-lg blur opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
               </Button>
