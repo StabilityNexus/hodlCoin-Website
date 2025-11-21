@@ -14,8 +14,65 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'hodlCoin Staking Platform',
-  description: 'Self-Stabilizing Staking vaults where the price is mathematically proven to always increase! Unstaking fees benefit vault creators and those who keep staking longer.',
+  title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
+  description: 'Self-Stabilizing Staking vaults where the price is mathematically proven to always increase! Stake your tokens on EVM chains, Ergo, or Alephium. Unstaking fees benefit vault creators and long-term stakers.',
+  keywords: [
+    'hodlCoin',
+    'staking',
+    'crypto staking',
+    'DeFi',
+    'self-stabilizing',
+    'staking vaults',
+    'EVM chains',
+    'Ergo',
+    'Alephium',
+    'blockchain',
+    'cryptocurrency',
+    'token staking',
+    'long-term holding',
+  ],
+  authors: [{ name: 'Stability Nexus' }],
+  creator: 'Stability Nexus',
+  publisher: 'Stability Nexus',
+  metadataBase: new URL('https://hodlcoin.co.in'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://hodlcoin.co.in',
+    siteName: 'hodlCoin Staking Platform',
+    title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
+    description: 'Self-Stabilizing Staking vaults where the price is mathematically proven to always increase! Stake your tokens on EVM chains, Ergo, or Alephium. Unstaking fees benefit vault creators and long-term stakers.',
+    images: [
+      {
+        url: '/hodlcoin.png',
+        width: 1200,
+        height: 630,
+        alt: 'hodlCoin Logo - Self-Stabilizing Staking Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
+    description: 'Self-Stabilizing Staking vaults where the price is mathematically proven to always increase! Stake on EVM chains, Ergo, or Alephium.',
+    images: ['/hodlcoin.png'],
+    creator: '@hodlCoinStaking',
+    site: '@hodlCoinStaking',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
