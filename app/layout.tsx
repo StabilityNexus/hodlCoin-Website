@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/hodlcoin.png',
-        width: 1200,
-        height: 630,
+        width: 2000,
+        height: 1730,
         alt: 'hodlCoin Logo - Self-Stabilizing Staking Platform',
       },
     ],
