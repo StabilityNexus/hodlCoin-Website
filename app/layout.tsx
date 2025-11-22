@@ -15,7 +15,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
-  description: 'Self-Stabilizing Staking vaults where the price is mathematically proven to always increase! Stake your tokens on EVM chains, Ergo, or Alephium. Unstaking fees benefit vault creators and long-term stakers.',
+  description: 'Self-Stabilizing Staking vaults with price stability mechanisms designed to increase value over time. Stake your tokens on EVM chains, Ergo, or Alephium. Unstaking fees benefit vault creators and long-term stakers.',
   keywords: [
     'hodlCoin',
     'staking',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     url: 'https://hodlcoin.co.in',
     siteName: 'hodlCoin Staking Platform',
     title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
-    description: 'Self-Stabilizing Staking vaults where the price is mathematically proven to always increase! Stake your tokens on EVM chains, Ergo, or Alephium. Unstaking fees benefit vault creators and long-term stakers.',
+    description: 'Self-Stabilizing Staking vaults with price stability mechanisms designed to increase value over time. Stake your tokens on EVM chains, Ergo, or Alephium. Unstaking fees benefit vault creators and long-term stakers.',
     images: [
       {
         url: '/hodlcoin-og.png',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
-    description: 'Self-Stabilizing Staking vaults where the price is mathematically proven to always increase! Stake on EVM chains, Ergo, or Alephium.',
+    description: 'Self-Stabilizing Staking vaults with price stability mechanisms designed to increase value over time. Stake on EVM chains, Ergo, or Alephium.',
     images: ['/hodlcoin-og.png'],
     creator: '@StabilityNexus',
     site: '@StabilityNexus',
