@@ -59,8 +59,8 @@ export const metadata: Metadata = {
     title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
     description: 'Self-Stabilizing Staking vaults where the price is mathematically proven to always increase! Stake on EVM chains, Ergo, or Alephium.',
     images: ['/hodlcoin-og.png'],
-    creator: '@hodlCoinStaking',
-    site: '@hodlCoinStaking',
+    creator: '@StabilityNexus',
+    site: '@StabilityNexus',
   },
   robots: {
     index: true,
