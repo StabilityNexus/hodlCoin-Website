@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
 Create an optimized Open Graph image (1200x630) for social media sharing.
-This script resizes and crops the hodlcoin.png to the recommended 1.91:1 aspect ratio.
+This script creates a properly sized image with centered logo and padding to prevent
+cropping on Discord, Twitter, Facebook, LinkedIn, and other platforms.
+Uses the recommended 1.91:1 aspect ratio (1200x630).
 """
 
 from PIL import Image
@@ -10,7 +12,8 @@ import sys
 
 def create_og_image(input_path, output_path, target_width=1200, target_height=630):
     """
-    Create an optimized Open Graph image by resizing and cropping the input image.
+    Create an optimized Open Graph image with proper padding to prevent cropping.
+    This version centers the logo with padding instead of cropping it.
     
     Args:
         input_path: Path to the source image
@@ -20,49 +23,61 @@ def create_og_image(input_path, output_path, target_width=1200, target_height=63
     """
     try:
         # Open the source image
-        img = Image.open(input_path)
-        original_width, original_height = img.size
+        logo = Image.open(input_path)
+        logo_width, logo_height = logo.size
         
-        # Calculate the target aspect ratio
-        target_ratio = target_width / target_height
-        
-        # Calculate the source aspect ratio
-        source_ratio = original_width / original_height
-        
-        # Resize and crop strategy
-        if source_ratio > target_ratio:
-            # Source is wider - fit to height and crop width
-            new_height = target_height
-            new_width = int(original_width * (target_height / original_height))
-            img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
-            
-            # Crop from center
-            left = (new_width - target_width) // 2
-            right = left + target_width
-            img = img.crop((left, 0, right, target_height))
+        # Create a new image with the target dimensions
+        # Use a background color that matches the logo or is neutral
+        if logo.mode == 'RGBA':
+            bg_color = (255, 255, 255, 255)
         else:
-            # Source is taller - fit to width and crop height
-            new_width = target_width
-            new_height = int(original_height * (target_width / original_width))
-            img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
-            
-            # Crop from center
-            top = (new_height - target_height) // 2
-            bottom = top + target_height
-            img = img.crop((0, top, target_width, bottom))
+            bg_color = (255, 255, 255)
         
-        # Ensure we have the exact target dimensions
-        if img.size != (target_width, target_height):
-            img = img.resize((target_width, target_height), Image.Resampling.LANCZOS)
+        img = Image.new('RGB', (target_width, target_height), bg_color)
+        
+        # Calculate scaling to fit logo with padding (use 80% of image area)
+        max_logo_width = int(target_width * 0.8)
+        max_logo_height = int(target_height * 0.8)
+        
+        # Calculate scale factor to fit within the padded area
+        scale_w = max_logo_width / logo_width
+        scale_h = max_logo_height / logo_height
+        scale = min(scale_w, scale_h)  # Use the smaller scale to fit both dimensions
+        
+        # Calculate new logo dimensions
+        new_logo_width = int(logo_width * scale)
+        new_logo_height = int(logo_height * scale)
+        
+        # Resize logo
+        if logo.mode == 'RGBA':
+            logo_resized = logo.resize((new_logo_width, new_logo_height), Image.Resampling.LANCZOS)
+        else:
+            logo_resized = logo.resize((new_logo_width, new_logo_height), Image.Resampling.LANCZOS)
+            if logo_resized.mode != 'RGBA':
+                logo_resized = logo_resized.convert('RGBA')
+        
+        # Calculate position to center the logo
+        x_offset = (target_width - new_logo_width) // 2
+        y_offset = (target_height - new_logo_height) // 2
+        
+        # Paste logo onto background
+        if logo_resized.mode == 'RGBA':
+            img.paste(logo_resized, (x_offset, y_offset), logo_resized)
+        else:
+            img.paste(logo_resized, (x_offset, y_offset))
         
         # Save the optimized image
-        img.save(output_path, 'PNG', optimize=True)
+        img.save(output_path, 'PNG', optimize=True, quality=95)
         print(f"✓ Created optimized OG image: {output_path}")
         print(f"  Dimensions: {img.size[0]}x{img.size[1]} (aspect ratio: {img.size[0]/img.size[1]:.2f}:1)")
+        print(f"  Logo size: {new_logo_width}x{new_logo_height} (scaled {scale:.2f}x)")
+        print(f"  Logo position: centered with {x_offset}px horizontal, {y_offset}px vertical padding")
         return True
         
     except Exception as e:
         print(f"✗ Error creating OG image: {e}", file=sys.stderr)
+        import traceback
+        traceback.print_exc()
         return False
 
 if __name__ == "__main__":
@@ -79,4 +94,5 @@ if __name__ == "__main__":
     
     success = create_og_image(input_path, output_path)
     sys.exit(0 if success else 1)
+
 
