@@ -55,10 +55,10 @@ def create_og_image(input_path, output_path, target_width=1200, target_height=63
         
         # Calculate position to center the logo horizontally
         # Position very high vertically to account for Discord's aggressive bottom cropping
-        # Use 75% top / 25% bottom split - this ensures logo stays well above Discord's crop zone
+        # Use 25% top / 75% bottom split - this ensures logo stays well above Discord's crop zone
         x_offset = (target_width - new_logo_width) // 2
         available_height = target_height - new_logo_height
-        y_offset = int(available_height * 0.75)  # Maximum padding at bottom (75% top, 25% bottom)
+        y_offset = int(available_height * 0.25)  # Maximum padding at bottom (25% top, 75% bottom)
         
         # Paste logo onto background
         if logo_resized.mode == 'RGBA':
