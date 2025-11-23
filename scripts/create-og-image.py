@@ -35,10 +35,11 @@ def create_og_image(input_path, output_path, target_width=1200, target_height=63
         bg_color = (255, 255, 255)
         img = Image.new('RGB', (target_width, target_height), bg_color)
         
-        # Calculate scaling to fit logo with padding (use 60% of image area for Discord compatibility)
-        # Reduced to 60% to prevent bottom cropping on Discord and other platforms
-        max_logo_width = int(target_width * 0.6)
-        max_logo_height = int(target_height * 0.6)
+        # Calculate scaling to fit logo with padding
+        # Use 45% of image area to account for Discord's very aggressive bottom cropping (15-20%)
+        # Discord crops the bottom portion heavily, so we need maximum bottom padding
+        max_logo_width = int(target_width * 0.45)
+        max_logo_height = int(target_height * 0.45)
         
         # Calculate scale factor to fit within the padded area
         scale_w = max_logo_width / logo_width
@@ -53,11 +54,11 @@ def create_og_image(input_path, output_path, target_width=1200, target_height=63
         logo_resized = logo.resize((new_logo_width, new_logo_height), Image.Resampling.LANCZOS)
         
         # Calculate position to center the logo horizontally
-        # Position slightly higher vertically to account for Discord's bottom cropping
+        # Position very high vertically to account for Discord's aggressive bottom cropping
+        # Use 75% top / 25% bottom split - this ensures logo stays well above Discord's crop zone
         x_offset = (target_width - new_logo_width) // 2
-        # Add extra bottom padding: use 55% top, 45% bottom split instead of 50/50
         available_height = target_height - new_logo_height
-        y_offset = int(available_height * 0.55)  # More padding at bottom
+        y_offset = int(available_height * 0.75)  # Maximum padding at bottom (75% top, 25% bottom)
         
         # Paste logo onto background
         if logo_resized.mode == 'RGBA':
