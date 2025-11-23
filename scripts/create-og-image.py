@@ -35,30 +35,31 @@ def create_og_image(input_path, output_path, target_width=1200, target_height=63
         bg_color = (255, 255, 255)
         img = Image.new('RGB', (target_width, target_height), bg_color)
         
-        # Calculate scaling to fit logo with padding
-        # Use 45% of image area to account for Discord's very aggressive bottom cropping (15-20%)
-        # Discord crops the bottom portion heavily, so we need maximum bottom padding
-        max_logo_width = int(target_width * 0.45)
-        max_logo_height = int(target_height * 0.45)
+        # Calculate scaling to fit logo with safe zone padding
+        # Use 50% of shortest dimension to ensure logo fits within safe area
+        # This accounts for platform-specific cropping (Discord: 15-20% bottom, Twitter/FB: 5-10%)
+        safe_area_ratio = 0.5
+        max_logo_width = int(target_width * safe_area_ratio)
+        max_logo_height = int(target_height * safe_area_ratio)
         
-        # Calculate scale factor to fit within the padded area
+        # Calculate scale factor to fit within the safe padded area
         scale_w = max_logo_width / logo_width
         scale_h = max_logo_height / logo_height
-        scale = min(scale_w, scale_h)  # Use the smaller scale to fit both dimensions
+        scale = min(scale_w, scale_h)  # Use the smaller scale to maintain aspect ratio
         
         # Calculate new logo dimensions
         new_logo_width = int(logo_width * scale)
         new_logo_height = int(logo_height * scale)
         
-        # Resize logo
+        # Resize logo with high-quality resampling
         logo_resized = logo.resize((new_logo_width, new_logo_height), Image.Resampling.LANCZOS)
         
-        # Calculate position to center the logo horizontally
-        # Position very high vertically to account for Discord's aggressive bottom cropping
-        # Use 25% top / 75% bottom split - this ensures logo stays well above Discord's crop zone
+        # Calculate position to center horizontally and position high vertically
+        # Discord aggressively crops bottom 15-20%, so we position logo in upper safe zone
+        # Split: 20% top padding, 80% bottom padding (logo positioned high)
         x_offset = (target_width - new_logo_width) // 2
         available_height = target_height - new_logo_height
-        y_offset = int(available_height * 0.25)  # Maximum padding at bottom (25% top, 75% bottom)
+        y_offset = int(available_height * 0.2)  # 20% top, 80% bottom - keeps logo high and safe
         
         # Paste logo onto background
         if logo_resized.mode == 'RGBA':
