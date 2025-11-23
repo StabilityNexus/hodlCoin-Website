@@ -27,12 +27,8 @@ def create_og_image(input_path, output_path, target_width=1200, target_height=63
         logo_width, logo_height = logo.size
         
         # Create a new image with the target dimensions
-        # Use a background color that matches the logo or is neutral
-        if logo.mode == 'RGBA':
-            bg_color = (255, 255, 255, 255)
-        else:
-            bg_color = (255, 255, 255)
-        
+        # Use a neutral white background
+        bg_color = (255, 255, 255)
         img = Image.new('RGB', (target_width, target_height), bg_color)
         
         # Calculate scaling to fit logo with padding (use 80% of image area)
@@ -49,12 +45,7 @@ def create_og_image(input_path, output_path, target_width=1200, target_height=63
         new_logo_height = int(logo_height * scale)
         
         # Resize logo
-        if logo.mode == 'RGBA':
-            logo_resized = logo.resize((new_logo_width, new_logo_height), Image.Resampling.LANCZOS)
-        else:
-            logo_resized = logo.resize((new_logo_width, new_logo_height), Image.Resampling.LANCZOS)
-            if logo_resized.mode != 'RGBA':
-                logo_resized = logo_resized.convert('RGBA')
+        logo_resized = logo.resize((new_logo_width, new_logo_height), Image.Resampling.LANCZOS)
         
         # Calculate position to center the logo
         x_offset = (target_width - new_logo_width) // 2
