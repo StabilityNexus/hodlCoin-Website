@@ -26,6 +26,10 @@ def create_og_image(input_path, output_path, target_width=1200, target_height=63
         logo = Image.open(input_path)
         logo_width, logo_height = logo.size
         
+        # Validate image dimensions
+        if logo_width == 0 or logo_height == 0:
+            raise ValueError(f"Invalid image dimensions: {logo_width}x{logo_height}")
+        
         # Create a new image with the target dimensions
         # Use a neutral white background
         bg_color = (255, 255, 255)
@@ -58,14 +62,14 @@ def create_og_image(input_path, output_path, target_width=1200, target_height=63
             img.paste(logo_resized, (x_offset, y_offset))
         
         # Save the optimized image
-        img.save(output_path, 'PNG', optimize=True, quality=95)
+        img.save(output_path, 'PNG', optimize=True)
         print(f"✓ Created optimized OG image: {output_path}")
         print(f"  Dimensions: {img.size[0]}x{img.size[1]} (aspect ratio: {img.size[0]/img.size[1]:.2f}:1)")
         print(f"  Logo size: {new_logo_width}x{new_logo_height} (scaled {scale:.2f}x)")
         print(f"  Logo position: centered with {x_offset}px horizontal, {y_offset}px vertical padding")
         return True
         
-    except Exception as e:
+    except (OSError, IOError, ValueError) as e:
         print(f"✗ Error creating OG image: {e}", file=sys.stderr)
         import traceback
         traceback.print_exc()
