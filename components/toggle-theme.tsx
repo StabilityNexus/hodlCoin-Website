@@ -4,6 +4,13 @@ import * as React from 'react'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
+/**
+ * Render a clickable theme toggle that switches the app between light and dark modes.
+ *
+ * The control reflects the resolved theme (preferring `resolvedTheme` over `theme`) and shows a non-interactive placeholder until the component is mounted on the client. Clicking the control toggles the active theme between `light` and `dark`.
+ *
+ * @returns A JSX element that visually represents the theme toggle and handles user interaction to switch themes.
+ */
 export function ModeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
