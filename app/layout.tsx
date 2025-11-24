@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     description: 'Self-Stabilizing Staking vaults with price stability mechanisms designed to increase value over time. Stake your tokens on EVM chains, Ergo, or Alephium. Unstaking fees benefit vault creators and long-term stakers.',
     images: [
       {
-        url: '/hodlcoin-og.png',
+        url: '/hodlcoin.png',
         width: 1200,
         height: 630,
         alt: 'hodlCoin Logo - Self-Stabilizing Staking Platform',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
     description: 'Self-Stabilizing Staking vaults with price stability mechanisms designed to increase value over time. Stake on EVM chains, Ergo, or Alephium.',
-    images: ['/hodlcoin-og.png'],
+    images: ['/hodlcoin.png'],
     creator: '@StabilityNexus',
     site: '@StabilityNexus',
   },
