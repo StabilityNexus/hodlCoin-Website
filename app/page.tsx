@@ -73,7 +73,7 @@ export default function HomePage() {
                 className="w-full md:w-auto font-bold relative overflow-hidden group
                   bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary
                   transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary/25
-                  border-0 text-primary-foreground"
+                  border-0 text-white hover:text-white"
               >
                 <span className="relative z-10">Ergo</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
