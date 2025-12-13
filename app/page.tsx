@@ -47,25 +47,26 @@ export default function HomePage() {
               { label: 'Ergo', href: 'https://app.hodlcoin.co.in/' },
               { label: 'Alephium', href: 'https://www.phoenixfi.app/' },
             ].map(({ label, href }) => (
-              <Link key={label} href={href}>
-                <Button
-                  size="lg"
-                  className="
-                    group relative overflow-hidden font-bold
-                    bg-gradient-to-r from-primary to-purple-600
-                    hover:from-purple-600 hover:to-primary
-                    transition-all duration-300
-                    hover:scale-105 hover:shadow-2xl hover:shadow-primary/25
-                    border-0
-                  "
-                >
+              <Button
+                key={label}
+                asChild
+                size="lg"
+                className="
+                  group relative overflow-hidden font-bold
+                  bg-gradient-to-r from-primary to-purple-600
+                  hover:from-purple-600 hover:to-primary
+                  transition-all duration-300
+                  hover:scale-105 hover:shadow-2xl hover:shadow-primary/25
+                  border-0
+                "
+              >
+                <Link href={href} target="_blank" rel="noopener noreferrer">
                   <span className="relative z-10 text-primary-foreground group-hover:text-black transition-colors">
                     {label}
                   </span>
-
                   <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             ))}
           </div>
         </div>
@@ -81,13 +82,18 @@ export default function HomePage() {
           <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
             <div className="w-full lg:w-1/2">
               <Card className="p-4 bg-background/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition">
-                <Link href="https://eprint.iacr.org/2023/1029" target="_blank">
+                <Link
+                  href="https://eprint.iacr.org/2023/1029"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group"
+                >
                   <div className="relative aspect-square overflow-hidden rounded-lg">
                     <Image
                       src="/images/paper.png"
                       alt="Research Paper"
                       fill
-                      className="object-cover hover:scale-105 transition-transform duration-500"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                 </Link>
@@ -106,6 +112,7 @@ export default function HomePage() {
               <Link
                 href="https://eprint.iacr.org/2023/1029"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-primary hover:text-primary/80 transition-colors"
               >
                 Read the Research Paper →
