@@ -5,7 +5,7 @@ import { ThemeProvider } from '../providers/theme-provider'
 import { Header } from '../components/Header'
 import Footer from '../components/Footer'
 
-const poppins = Poppins({ 
+const poppins = Poppins({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
   variable: '--font-poppins',
@@ -14,8 +14,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'hodlCoin | Multi-Chain Staking Platform with Self-Stabilizing Vaults',
-  description: 'Stake smarter with self-stabilizing vaults designed to grow your crypto. Multi-chain support for EVM (Ethereum, BSC, Polygon), Ergo & Alephium blockchains. Hold longer, earn more through our innovative unstaking fee mechanism.',
+  title: 'hodlCoin | Multi-Chain Staking with Self-Stabilizing Vaults',
+  description: 'Multi-chain staking platform with self-stabilizing vaults. Supports EVM (Ethereum, BSC, Polygon), Ergo & Alephium. Earn more by holding longer.',
   keywords: [
     'hodlCoin',
     'staking',
@@ -109,13 +109,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-            <div className="relative flex min-h-screen flex-col overflow-x-hidden">
-              <Header />
-              <main className="flex-1 w-full">
-                {children}
-              </main>
-              <Footer />
-            </div>
+          <div className="relative flex min-h-screen flex-col overflow-x-hidden">
+            <Header />
+            <main className="flex-1 w-full">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
