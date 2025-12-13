@@ -25,19 +25,26 @@ export function ThemeProvider({ children }: ThemeProviderProps): JSX.Element {
   const setRootClass = (newTheme: 'light' | 'dark'): void => {
     if (typeof document !== 'undefined') {
       document.documentElement.classList.toggle('dark', newTheme === 'dark');
+      // Ensure the smooth transition class is applied after initial render
+      document.documentElement.classList.add('transition-colors', 'duration-300');
     }
   };
 
   // Initialize theme on mount
   useEffect(() => {
-    // SSR safety check is already here
     if (typeof window === 'undefined') return;
 
-    // FIX 1: Safely validate localStorage value instead of relying on unsafe type assertion
-    const storedRaw = localStorage.getItem('theme');
-    const stored = (storedRaw === 'light' || storedRaw === 'dark') ? storedRaw : null;
+    // FIX 1A: Harden theme persistence read with try/catch
+    let storedRaw: string | null = null;
+    try {
+      storedRaw = localStorage.getItem('theme');
+    } catch {
+      // Ignore storage read failures (privacy modes / denied storage)
+    }
 
-    // Use nullish coalescing (??) which is cleaner than || for null/undefined
+    const stored = (storedRaw === 'light' || storedRaw === 'dark') ? storedRaw : null;
+    
+    // Use system preference if no valid stored theme is found
     const initial = stored ?? 
       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     
@@ -47,14 +54,22 @@ export function ThemeProvider({ children }: ThemeProviderProps): JSX.Element {
   }, []);
 
   // Toggle theme function
+  // FIX 1B: Use functional state update for race-safe toggling
   const toggleTheme = (): void => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    
-    setTheme(newTheme);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', newTheme);
-    }
-    setRootClass(newTheme);
+    setTheme((prev) => {
+      const next = prev === 'light' ? 'dark' : 'light';
+      setRootClass(next);
+      
+      // FIX 1C: Harden theme persistence write with try/catch
+      try {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('theme', next);
+        }
+      } catch {
+        // Ignore storage write failures
+      }
+      return next;
+    });
   };
 
   return (
@@ -81,6 +96,8 @@ export function ThemeToggle(): JSX.Element {
   if (!mounted) {
     return (
       <button 
+        // FIX 2: Added type="button"
+        type="button"
         className="p-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 transition-colors duration-200"
         aria-label="Loading theme toggle"
         disabled
@@ -92,6 +109,8 @@ export function ThemeToggle(): JSX.Element {
 
   return (
     <button
+      // FIX 2: Added type="button"
+      type="button"
       onClick={toggleTheme}
       className="p-2 rounded-lg border border-gray-300 dark:border-gray-600 
                  bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700
@@ -121,20 +140,20 @@ export default function HomePage(): JSX.Element {
 function HomePageContent(): JSX.Element {
   const { mounted } = useTheme(); 
   
-  if (!mounted) {
-    // Fallback loading screen
-    return <div className="min-h-screen bg-gray-900" />;
-  }
-
+  // FIX 3 (Major SSR/Performance): Removed the early return that blanked the page
+  // The 'mounted' check is now only used where truly necessary (ThemeToggle)
+  // The main div ensures the necessary base classes are present for Tailwind SSR
   return (
+    // Base classes for full screen, dark mode transition, and text color
     <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
       
       {/* Header */}
       <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 py-4">
         <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-          {/* Demoted to <span> for single <h1> rule (SEO/Accessibility) */}
           <span className="text-2xl font-bold m-0">hodlCoin</span>
           <div className="flex items-center space-x-4">
+            {/* Conditional visibility for the label until mounted, if needed, 
+                but keeping it visible is generally fine since it uses base classes */}
             <span className="text-sm text-gray-500 dark:text-gray-400">
               Theme Toggle →
             </span>
@@ -148,7 +167,6 @@ function HomePageContent(): JSX.Element {
         
         {/* Hero Section */}
         <div className="text-center mb-16 pt-8">
-          {/* The main <h1> heading for the page */}
           <h1 className="text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-pink-500">
             hodlCoin Staking Platform
           </h1>
@@ -162,13 +180,13 @@ function HomePageContent(): JSX.Element {
           </h2>
           
           <div className="flex flex-wrap gap-4 justify-center">
-            <button className="px-8 py-3 text-lg font-semibold rounded-lg border-none bg-gradient-to-r from-violet-500 to-pink-500 text-white cursor-pointer hover:opacity-90 transition-opacity">
+            <button type="button" className="px-8 py-3 text-lg font-semibold rounded-lg border-none bg-gradient-to-r from-violet-500 to-pink-500 text-white cursor-pointer hover:opacity-90 transition-opacity">
               EVM Chains
             </button>
-            <button className="px-8 py-3 text-lg font-semibold rounded-lg border-none bg-gradient-to-r from-violet-500 to-pink-500 text-white cursor-pointer hover:opacity-90 transition-opacity">
+            <button type="button" className="px-8 py-3 text-lg font-semibold rounded-lg border-none bg-gradient-to-r from-violet-500 to-pink-500 text-white cursor-pointer hover:opacity-90 transition-opacity">
               Ergo
             </button>
-            <button className="px-8 py-3 text-lg font-semibold rounded-lg border-none bg-gradient-to-r from-violet-500 to-pink-500 text-white cursor-pointer hover:opacity-90 transition-opacity">
+            <button type="button" className="px-8 py-3 text-lg font-semibold rounded-lg border-none bg-gradient-to-r from-violet-500 to-pink-500 text-white cursor-pointer hover:opacity-90 transition-opacity">
               Alephium
             </button>
           </div>
