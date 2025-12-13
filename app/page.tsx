@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hodlCoin Staking Platform</title>
+
     <style>
         * {
             margin: 0;
@@ -124,6 +125,7 @@
             justify-content: center;
             font-size: 1.5rem;
             font-weight: bold;
+            color: white;
         }
 
         h1 {
@@ -132,14 +134,7 @@
             background: linear-gradient(135deg, #a855f7, #ec4899, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 1.5rem;
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .subtitle {
@@ -158,7 +153,6 @@
             background: linear-gradient(135deg, #a855f7, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 2rem;
         }
 
@@ -185,10 +179,11 @@
             box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
         }
 
+        /* ✅ Hover keeps SAME color */
         .btn:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.4);
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
         }
 
         .btn::before {
@@ -218,194 +213,34 @@
             padding: 0 2rem;
         }
 
-        .how-it-works {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 6rem;
-        }
-
-        .paper-card {
-            flex: 1;
-            background: rgba(243, 244, 246, 0.5);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 1rem;
-            padding: 1rem;
-            transition: all 0.3s;
-        }
-
-        .paper-card:hover {
-            border-color: rgba(124, 58, 237, 0.4);
-            transform: translateY(-5px);
-        }
-
-        .paper-image {
-            width: 100%;
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9ca3af;
-            font-size: 3rem;
-        }
-
-        .content-text {
-            flex: 1;
-        }
-
-        .section-title {
-            font-size: 2.25rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .divider {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #7c3aed, #a855f7);
-            border-radius: 2px;
-            margin-bottom: 1.5rem;
-        }
-
-        .description {
-            font-size: 1.125rem;
-            line-height: 1.75;
-            color: #4b5563;
-            margin-bottom: 1rem;
-        }
-
-        .read-more {
-            display: inline-flex;
-            align-items: center;
-            color: #a855f7;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 1rem;
-            transition: color 0.3s;
-        }
-
-        .read-more:hover {
-            color: #c084fc;
-        }
-
-        .why-section {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: rgba(243, 244, 246, 0.5);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 1rem;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(124, 58, 237, 0.4);
-            transform: translateY(-5px);
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-divider {
-            width: 48px;
-            height: 2px;
-            background: linear-gradient(90deg, #7c3aed, #a855f7);
-            border-radius: 2px;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-list {
-            list-style: none;
-        }
-
-        .feature-item {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .bullet {
-            width: 8px;
-            height: 8px;
-            background: #7c3aed;
-            border-radius: 50%;
-            margin-top: 8px;
-            flex-shrink: 0;
-        }
-
-        .feature-content h4 {
-            font-weight: 600;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.25rem;
-        }
-
-        .feature-content p {
-            font-size: 0.875rem;
-            color: #4b5563;
-            line-height: 1.5;
-        }
-
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 1.75rem; }
-            .how-it-works { flex-direction: column; }
-            .cards-grid { grid-template-columns: 1fr; }
             .button-container { flex-direction: column; width: 100%; }
             .btn { width: 100%; }
         }
     </style>
 </head>
+
 <body>
     <canvas id="matrixCanvas"></canvas>
 
-    <!-- Hero Section -->
     <div class="hero-section">
         <div class="gradient-bg"></div>
-        <div class="glow-effects">
-            <div class="glow glow-1"></div>
-            <div class="glow glow-2"></div>
-            <div class="glow glow-3"></div>
-        </div>
-        
+
         <div class="hero-content">
             <div class="logo-container">
                 <div class="logo-placeholder">LOGO</div>
             </div>
-            
+
             <h1>hodlCoin Staking Platform</h1>
-            
+
             <p class="subtitle">
-                Self-Stabilizing Staking vaults where the price is mathematically proven to always increase!<br>
-                Unstaking fees benefit vault creators and those who keep staking longer.
+                Self-Stabilizing Staking vaults where the price is mathematically proven to always increase!
             </p>
-            
+
             <h2>Choose the blockchain where you would like to stake:</h2>
-            
+
             <div class="button-container">
                 <button class="btn">EVM Chains</button>
                 <button class="btn">Ergo</button>
@@ -414,118 +249,7 @@
         </div>
     </div>
 
-    <!-- Content Section -->
-    <div class="content-section">
-        <div class="container">
-            <!-- How It Works -->
-            <div class="how-it-works">
-                <div class="paper-card">
-                    <div class="paper-image">📄</div>
-                </div>
-                
-                <div class="content-text">
-                    <div class="section-title">How hodlCoin Works</div>
-                    <div class="divider"></div>
-                    
-                    <p class="description">
-                        HodlCoin is a staking protocol that encourages staking ("hodling") assets for long periods of time. When hodling, users deposit coins of a given asset in a vault and receive a proportional amount of corresponding hodlCoins.
-                    </p>
-                    
-                    <p class="description">
-                        When unhodling, users must pay an unstaking fee that benefits the vault's creator and users who continue hodling longer. Moreover, anyone (especially vault creators) can distribute rewards to hodlers, to further incentivize hodling.
-                    </p>
-                    
-                    <a href="#" class="read-more">
-                        Read the Research Paper →
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Why Section -->
-            <div class="why-section">
-                <div class="section-title">Why hodlCoin</div>
-            </div>
-            
-            <div class="cards-grid">
-                <!-- Vault Creators Card -->
-                <div class="feature-card">
-                    <div class="card-title">For Vault Creators</div>
-                    <div class="card-divider"></div>
-                    
-                    <ul class="feature-list">
-                        <li class="feature-item">
-                            <div class="bullet"></div>
-                            <div class="feature-content">
-                                <h4>Reward your Loyal Tokenholders</h4>
-                                <p>Efficiently distribute rewards to all your tokenholders with a single transaction.</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="bullet"></div>
-                            <div class="feature-content">
-                                <h4>Signal your Long-Term Commitment</h4>
-                                <p>Stake your own tokens in a vault with a high unstaking fee, to show your community that you are holding for the long run.</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="bullet"></div>
-                            <div class="feature-content">
-                                <h4>Earn Unstaking Fees</h4>
-                                <p>Receive a portion of fees when users unstake early.</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="bullet"></div>
-                            <div class="feature-content">
-                                <h4>Protect your Token from Sell Pressure</h4>
-                                <p>The unstaking fee disincentivizes sellers and incentivizes holders without inflation.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Stakers Card -->
-                <div class="feature-card">
-                    <div class="card-title">For Stakers</div>
-                    <div class="card-divider"></div>
-                    
-                    <ul class="feature-list">
-                        <li class="feature-item">
-                            <div class="bullet"></div>
-                            <div class="feature-content">
-                                <h4>Earn from Others' Impatience</h4>
-                                <p>Benefit from unstaking fees paid by users who exit early.</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="bullet"></div>
-                            <div class="feature-content">
-                                <h4>Long-Term Value Growth</h4>
-                                <p>The price of the hodlCoin is mathematically guaranteed to grow w.r.t. the price of the underlying coin, if you hodl longer than others.</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="bullet"></div>
-                            <div class="feature-content">
-                                <h4>Receive Rewards</h4>
-                                <p>Get additional rewards distributed by vault creators who want to incentivize staking.</p>
-                            </div>
-                        </li>
-                        <li class="feature-item">
-                            <div class="bullet"></div>
-                            <div class="feature-content">
-                                <h4>Flexible Participation</h4>
-                                <p>Stake and unstake at any time, choosing from a wide variety of vaults for various tokens.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Matrix Effect
         const canvas = document.getElementById('matrixCanvas');
         const ctx = canvas.getContext('2d');
 
