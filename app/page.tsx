@@ -7,34 +7,28 @@ import { Card } from '@/components/ui/card'
 import { useMatrixEffect } from '@/hooks/useMatrixEffect'
 
 export default function HomePage() {
-  const heroMatrixRef = useMatrixEffect(0.2, 2) // Matrix effect for hero section
-  const sectionMatrixRef = useMatrixEffect(0.15, 1.5) // Matrix effect for lower section
+  const heroMatrixRef = useMatrixEffect(0.2, 2)
+  const sectionMatrixRef = useMatrixEffect(0.15, 1.5)
 
   return (
     <>
       <div className="relative w-full min-h-[90vh] mt-4 overflow-hidden flex flex-col items-center justify-center">
-        {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background/90" />
         
-        {/* Matrix background effect */}
         <div className="absolute inset-0 opacity-20">
           <div ref={heroMatrixRef} className="absolute inset-0 w-full h-full" />
           
-          {/* Additional purple glow effects */}
           <div className="absolute top-1/4 right-1/4 w-40 h-40 bg-gray-300/10 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute bottom-1/3 left-1/4 w-32 h-32 bg-gray-400/10 rounded-full blur-2xl animate-pulse animation-delay-2000" />
-            <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-gray-500/5 rounded-full blur-xl animate-pulse animation-delay-4000" />
+          <div className="absolute bottom-1/3 left-1/4 w-32 h-32 bg-gray-400/10 rounded-full blur-2xl animate-pulse animation-delay-2000" />
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-gray-500/5 rounded-full blur-xl animate-pulse animation-delay-4000" />
           
-          {/* Subtle overlay for depth */}
           <div className="absolute inset-0 bg-gradient-to-t from-background/10 via-transparent to-background/5" />
         </div>
 
         <div className="relative flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 py-16 space-y-8">
-          {/* Logo Animation */}
           <div className="relative w-32 h-16 animate-float">
           </div>
 
-          {/* Main Content */}
           <div className="text-center space-y-6">
             <h1 className="pb-2 text-5xl md:text-6xl font-extrabold tracking-tight text-gradient animate-fade-in">
               hodlCoin Staking Platform
@@ -51,7 +45,6 @@ export default function HomePage() {
             </h2>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex flex-col md:flex-row gap-4 animate-fade-in">
             <Link href='https://evm.hodlcoin.co.in/'>
               <Button 
@@ -98,23 +91,18 @@ export default function HomePage() {
       </div>
 
       <section className="relative w-full py-24 overflow-hidden bg-background">
-        {/* Matrix background effect */}
         <div className="absolute inset-0 opacity-25">
           <div ref={sectionMatrixRef} className="absolute inset-0 w-full h-full" />
           
-          {/* Additional purple glow effects */}
           <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gray-300/15 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-gray-400/10 rounded-full blur-2xl animate-pulse animation-delay-2000" />
-            <div className="absolute top-1/2 right-1/3 w-20 h-20 bg-gray-500/5 rounded-full blur-xl animate-pulse animation-delay-4000" />
+          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-gray-400/10 rounded-full blur-2xl animate-pulse animation-delay-2000" />
+          <div className="absolute top-1/2 right-1/3 w-20 h-20 bg-gray-500/5 rounded-full blur-xl animate-pulse animation-delay-4000" />
           
-          {/* Subtle grid overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/5 to-transparent" />
         </div>
 
         <div className="relative container mx-auto px-4 space-y-24">
-          {/* How HodlCoin Works Section */}
           <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
-            {/* Paper Image */}
             <div className="w-full lg:w-1/2">
               <Card className="p-4 bg-background/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-colors">
                 <Link
@@ -138,7 +126,6 @@ export default function HomePage() {
               </Card>
             </div>
 
-            {/* Content */}
             <div className="w-full lg:w-1/2 space-y-6">
               <div className="space-y-4">
                 <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gradient">
@@ -185,7 +172,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Why HodlCoin Section */}
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gradient">
@@ -194,7 +180,6 @@ export default function HomePage() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {/* For Vault Creators */}
               <Card className="p-8 bg-background/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-colors">
                 <div className="space-y-6">
                   <div className="space-y-2">
@@ -235,7 +220,6 @@ export default function HomePage() {
                 </div>
               </Card>
 
-              {/* For Stakers */}
               <Card className="p-8 bg-background/50 backdrop-blur-sm border-primary/20 hover:border-primary/40 transition-colors">
                 <div className="space-y-6">
                   <div className="space-y-2">
