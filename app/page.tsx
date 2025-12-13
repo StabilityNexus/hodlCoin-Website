@@ -69,15 +69,14 @@ export default function HomePage() {
             <Link href='https://app.hodlcoin.co.in/'>
               <Button 
                 size="lg" 
-                variant="outline" 
                 className="w-full md:w-auto font-bold relative overflow-hidden group
                   bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-primary
                   transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary/25
                   border-0 text-primary-foreground"
               >
                 <span className="relative z-10">Ergo</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-purple-500/30 rounded-lg blur opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-lg blur opacity-0 group-hover:opacity-30 transition-opacity duration-300" />
               </Button>
             </Link>
             <Link href='https://www.phoenixfi.app/'>
