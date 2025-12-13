@@ -29,7 +29,8 @@ export function ModeToggle() {
   // Use resolvedTheme to get the actual theme value (light/dark), not 'system'
   const currentTheme = resolvedTheme || theme
 
-  if (!mounted) {
+  // Don't render the interactive toggle until both mounted and theme is resolved
+  if (!mounted || !resolvedTheme) {
     return (
       <div
         className="flex items-center space-x-4"
@@ -45,7 +46,7 @@ export function ModeToggle() {
           />
           <Moon
             className="absolute right-2 top-1/2 transform -translate-y-1/2 opacity-0"
-            size={24} 
+            size={24}
             color="yellow"
           />
         </div>
@@ -62,25 +63,22 @@ export function ModeToggle() {
     >
       <div className="flex items-center w-20 h-10 rounded-full bg-gray-300 dark:bg-gray-600 relative p-1 cursor-pointer transition-colors active:scale-95">
         <div
-          className={`w-8 h-8 rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${
-            currentTheme === 'light'
-              ? 'translate-x-0 bg-white'
-              : 'translate-x-10 bg-black'
-          }`}
+          className={`w-8 h-8 rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${currentTheme === 'light'
+            ? 'translate-x-0 bg-white'
+            : 'translate-x-10 bg-black'
+            }`}
         ></div>
 
         <Sun
-          className={`absolute left-2 top-1/2 transform -translate-y-1/2 transition-opacity duration-300 ease-in-out ${
-            currentTheme === 'light' ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute left-2 top-1/2 transform -translate-y-1/2 transition-opacity duration-300 ease-in-out ${currentTheme === 'light' ? 'opacity-100' : 'opacity-0'
+            }`}
           size={24}
           color="orange"
         />
         <Moon
-          className={`absolute right-2 top-1/2 transform -translate-y-1/2 transition-opacity duration-300 ease-in-out ${
-            currentTheme === 'light' ? 'opacity-0' : 'opacity-100'
-          }`}
-          size={24} 
+          className={`absolute right-2 top-1/2 transform -translate-y-1/2 transition-opacity duration-300 ease-in-out ${currentTheme === 'light' ? 'opacity-0' : 'opacity-100'
+            }`}
+          size={24}
           color="yellow"
         />
       </div>
