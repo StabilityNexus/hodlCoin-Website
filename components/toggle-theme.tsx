@@ -39,7 +39,7 @@ export function ModeToggle() {
         <div className="flex items-center w-20 h-10 rounded-full bg-gray-300 relative p-1 cursor-pointer transition-colors">
           <div className="w-8 h-8 rounded-full shadow-md bg-white"></div>
           <Sun
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 opacity-100"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 opacity-0"
             size={24}
             color="orange"
           />
