@@ -5,6 +5,8 @@ import { ThemeProvider } from '../providers/theme-provider'
 import { Header } from '../components/Header'
 import Footer from '../components/Footer'
 
+const siteUrl = new URL('https://hodlcoin.co.in')
+
 const poppins = Poppins({ 
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -14,8 +16,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
-  description: 'Self-Stabilizing Staking vaults with price stability mechanisms designed to increase value over time. Stake your tokens on EVM chains, Ergo, or Alephium. Unstaking fees benefit vault creators and long-term stakers.',
+  title: 'hodlCoin | Self-Stabilizing Staking Vaults',
+  description: 'Stake in self-stabilizing vaults designed to protect value over time. Earn yield across EVM chains, Ergo, and Alephium—while unstaking fees reward long-term stakers and vault creators.',
   keywords: [
     'hodlCoin',
     'staking',
@@ -34,31 +36,31 @@ export const metadata: Metadata = {
   authors: [{ name: 'Stability Nexus' }],
   creator: 'Stability Nexus',
   publisher: 'Stability Nexus',
-  metadataBase: new URL('https://hodlcoin.co.in'),
+  metadataBase: siteUrl,
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://hodlcoin.co.in',
-    siteName: 'hodlCoin Staking Platform',
-    title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
-    description: 'Self-Stabilizing Staking vaults with price stability mechanisms designed to increase value over time. Stake your tokens on EVM chains, Ergo, or Alephium. Unstaking fees benefit vault creators and long-term stakers.',
+    url: siteUrl,
+    siteName: 'hodlCoin',
+    title: 'hodlCoin | Self-Stabilizing Staking Vaults',
+    description: 'Stake in self-stabilizing vaults designed to protect value over time. Earn yield across EVM chains, Ergo, and Alephium—while unstaking fees reward long-term stakers and vault creators.',
     images: [
       {
-        url: '/hodlcoin.png',
-        width: 1200,
-        height: 630,
-        alt: 'hodlCoin Logo - Self-Stabilizing Staking Platform',
+        url: new URL('/hodlcoin.png', siteUrl),
+        width: 2000,
+        height: 1730,
+        alt: 'hodlCoin logo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'hodlCoin Staking Platform | Self-Stabilizing Staking Vaults',
-    description: 'Self-Stabilizing Staking vaults with price stability mechanisms designed to increase value over time. Stake on EVM chains, Ergo, or Alephium.',
-    images: ['/hodlcoin.png'],
+    title: 'hodlCoin | Self-Stabilizing Staking Vaults',
+    description: 'Stake in self-stabilizing vaults designed to protect value over time. Earn yield across EVM chains, Ergo, and Alephium.',
+    images: [new URL('/hodlcoin.png', siteUrl)],
     creator: '@StabilityNexus',
     site: '@StabilityNexus',
   },
@@ -93,8 +95,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={poppins.variable}>
-      {/* Fonts are now loaded exclusively through `next/font` */}
-      <body className={poppins.className}>
+      <body className={poppins.className} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

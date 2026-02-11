@@ -113,7 +113,6 @@ export default function Footer() {
     <footer className='w-full px-6 md:px-24 py-8 bg-secondary/20 border-t border-border'>
       <div className='max-w-6xl mx-auto'>
         <div className='flex flex-col md:flex-row items-center justify-between gap-6'>
-          {/* Navigation Links */}
           <div className='flex items-center justify-between'>
         <Link
           href='https://stability.nexus/'
@@ -135,7 +134,6 @@ export default function Footer() {
              © 2023-2025 The Stable Order. All rights reserved.
           </div>
 
-          {/* Social Media Links */}
           <div className='flex items-center gap-3'>
             {navigation.map(item => (
               <Link

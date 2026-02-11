@@ -8,9 +8,8 @@ export const useMatrixEffect = (opacity = 0.3, symbolCount = 3) => {
     if (!matrixContainer) return
 
     const symbols = ['$', '¢', '€', '£', '¥', '₿']
-    const columns = Math.floor(window.innerWidth / 40) // Increased spacing for fewer symbols
+    const columns = Math.floor(window.innerWidth / 40)
     
-    // Create matrix columns
     for (let i = 0; i < columns; i++) {
       const column = document.createElement('div')
       column.className = 'matrix-column'
@@ -23,11 +22,12 @@ export const useMatrixEffect = (opacity = 0.3, symbolCount = 3) => {
         overflow: hidden;
       `
       
-      // Create symbols in each column (reduced count)
       const randomSymbolCount = Math.floor(Math.random() * symbolCount) + 2
       for (let j = 0; j < randomSymbolCount; j++) {
         const symbol = document.createElement('div')
         const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)]
+        const baseAlpha = Math.random() * 0.6 + 0.3
+        const alpha = Math.min(1, Math.max(0, baseAlpha * opacity))
         symbol.textContent = randomSymbol
         symbol.className = 'matrix-symbol'
         symbol.style.cssText = `
@@ -35,8 +35,8 @@ export const useMatrixEffect = (opacity = 0.3, symbolCount = 3) => {
           font-family: 'Courier New', monospace;
           font-weight: bold;
           font-size: ${Math.random() * 6 + 12}px;
-          color: rgba(147, 51, 234, ${Math.random() * 0.6 + 0.3});
-          text-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+          color: rgba(147, 51, 234, ${alpha});
+          text-shadow: 0 0 10px rgba(147, 51, 234, ${Math.min(1, alpha + 0.2)});
           animation: matrixFall ${Math.random() * 4 + 3}s linear infinite;
           animation-delay: ${Math.random() * 3}s;
           top: ${Math.random() * 100}%;
@@ -49,7 +49,6 @@ export const useMatrixEffect = (opacity = 0.3, symbolCount = 3) => {
       matrixContainer.appendChild(column)
     }
 
-    // Add CSS animation if not already added
     if (!document.getElementById('matrix-styles')) {
       const style = document.createElement('style')
       style.id = 'matrix-styles'
@@ -89,7 +88,7 @@ export const useMatrixEffect = (opacity = 0.3, symbolCount = 3) => {
         matrixContainer.innerHTML = ''
       }
     }
-  }, [symbolCount])
+  }, [symbolCount, opacity])
 
   return matrixRef
-} 
+}
