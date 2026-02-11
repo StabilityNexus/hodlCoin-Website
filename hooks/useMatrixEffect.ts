@@ -5,7 +5,7 @@ export const useMatrixEffect = (opacity = 0.3, symbolCount = 3) => {
 
   useEffect(() => {
     const matrixContainer = matrixRef.current
-    if (!matrixContainer) return
+    if (!matrixContainer || typeof window === 'undefined') return
 
     const symbols = ['$', '¢', '€', '£', '¥', '₿']
     const columns = Math.floor(window.innerWidth / 40) // Increased spacing for fewer symbols
