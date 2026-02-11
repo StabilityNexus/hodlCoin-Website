@@ -21,15 +21,18 @@ export function ModeToggle() {
   }, [])
 
   function toggleTheme() {
+    // Use resolvedTheme to get the actual theme value (light/dark), not 'system'
     const currentTheme = resolvedTheme || theme
     const newTheme = currentTheme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
   }
 
   // Use resolvedTheme to get the actual theme value (light/dark), not 'system'
+  // Wait for both mounted and resolvedTheme to be available
   const currentTheme = resolvedTheme || theme
+  const isReady = mounted && resolvedTheme !== undefined
 
-  if (!mounted) {
+  if (!isReady) {
     return (
       <div
         className="flex items-center space-x-4"
